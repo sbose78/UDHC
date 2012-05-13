@@ -10,8 +10,21 @@
 <html>
     <head>
         
-        
-
+          <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  
+  
+       <script src="http://yui.yahooapis.com/3.5.0/build/yui/yui-min.js"></script>
+  
+  <link rel="stylesheet" href="http://www.jqwidgets.com/jquery-widgets-demo/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <script type="text/javascript" src="http://www.jqwidgets.com/jquery-widgets-demo/scripts/gettheme.js"></script>
+    <script type="text/javascript" src="http://www.jqwidgets.com/jquery-widgets-demo/scripts/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="http://www.jqwidgets.com/jquery-widgets-demo/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="http://www.jqwidgets.com/jquery-widgets-demo/jqwidgets/jqxmenu.js"></script>
+    <script type="text/javascript" src="http://www.jqwidgets.com/jquery-widgets-demo/jqwidgets/jqxcheckbox.js"></script>
+    
+    
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/menu/assets/skins/sam/menu.css" />
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/button/assets/skins/sam/button.css" />
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/fonts/fonts-min.css" />
@@ -25,17 +38,13 @@
 <script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/editor/editor-min.js"></script>
 
 
+
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/fonts/fonts-min.css" />
 <script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/yahoo/yahoo-min.js"></script>
 <script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/event/event-min.js"></script>
 <script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/connection/connection-min.js"></script>
 
- <link rel="stylesheet" href="http://www.jqwidgets.com/jquery-widgets-demo/jqwidgets/styles/jqx.base.css" type="text/css" />
-    <script type="text/javascript" src="http://www.jqwidgets.com/jquery-widgets-demo/scripts/gettheme.js"></script>
-    <script type="text/javascript" src="http://www.jqwidgets.com/jquery-widgets-demo/scripts/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="http://www.jqwidgets.com/jquery-widgets-demo/jqwidgets/jqxcore.js"></script>
-    <script type="text/javascript" src="http://www.jqwidgets.com/jquery-widgets-demo/jqwidgets/jqxmenu.js"></script>
-    <script type="text/javascript" src="http://www.jqwidgets.com/jquery-widgets-demo/jqwidgets/jqxcheckbox.js"></script>
+    <script src="http://yui.yahooapis.com/3.5.0/build/yui/yui-min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
                 var theme = getTheme();
@@ -103,10 +112,12 @@
                 });
             });
         </script>
+  
         
         
-
-
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Network processing
@@ -117,12 +128,12 @@
             
         </title>
     </head>
-    <h3 align='right'>
+    <h4 align='right'>
     
     You are signed in as <%= bose.User.getLoggedInUserEmail(request)  %>
     
-    </h3>
-    <body onload="showPosts()">
+    </h4>
+    <body>
         
         
          <div id='content' align="center">
@@ -268,7 +279,7 @@ function makeRequest(){
                 div.innerHTML="<p align='center'> <img src='http://www.freeiconsweb.com/Icons-show/loading/loading37.gif'/></p>";
 
         var topic_id= <%=topic_id%>;
-	var request = YAHOO.util.Connect.asyncRequest('GET', '/UHDC-war/showIssue.jsp?topic_id='+topic_id, callback);
+	var request = YAHOO.util.Connect.asyncRequest('GET', '<%=request.getContextPath() %>/showIssue.jsp?topic_id='+topic_id, callback);
 	
 	YAHOO.log("Initiating request; tId: " + request.tId + ".", "info", "example");
 
@@ -343,7 +354,7 @@ function showPosts(){
         posts.innerHTML="<p align='center'> <img src='http://www.freeiconsweb.com/Icons-show/loading/loading37.gif'/></p>";
 
         var topic_id= <%=topic_id%>;
-	var request = YAHOO.util.Connect.asyncRequest('GET', '/UHDC-war/showPosts.jsp?topic_id='+topic_id, callback_posts);
+	var request = YAHOO.util.Connect.asyncRequest('GET', '<%=request.getContextPath() %>/showPosts.jsp?topic_id='+topic_id, callback_posts);
 	
 	YAHOO.log("Initiating request; tId: " + request.tId + ".", "info", "example");
 
@@ -358,7 +369,8 @@ function showPosts(){
         <br>
         
         
-        
+                                                <div id="sendPostStatus" align="center"></div>                                      
+
         <div  class="yui-skin-sam">
 
             
@@ -379,7 +391,6 @@ function showPosts(){
                                         
                                           </div>
                                         
-                                        <div id="sendPostStatus" align="center"></div>                                      
                                         
                                         
 

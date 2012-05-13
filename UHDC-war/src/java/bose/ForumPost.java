@@ -109,7 +109,7 @@ public class ForumPost {
                 Statement stmt=null;
 
                 stmt=con.createStatement();
-                rst=stmt.executeQuery("select * from health1.forum_post where topic_id = "+topic_id);
+                rst=stmt.executeQuery("select * from health1.forum_post where topic_id = "+topic_id+" order by post_id asc");
                 while(rst.next()){
                     
                         int post_id=rst.getInt("post_id");

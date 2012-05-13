@@ -61,7 +61,12 @@ public class User {
                         return name;
                 }
                 
+                stmt = null;
+                
+                
                 DbCon.closeConnection(con);
+                
+                
         }
         
         

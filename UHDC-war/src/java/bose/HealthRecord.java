@@ -27,6 +27,53 @@ public class HealthRecord {
         
     }
     
+    public HealthRecord(String topic_id,String topic, String socialWorker_id,String problem_id, String problem_details)
+    {
+        this.topic_id= topic_id;
+        this.problem_id=problem_id;
+        this.socialWorker_id=socialWorker_id;
+        this.problem_details=problem_details;
+        this.topic=topic;
+    }
+    
+    
+     public static ArrayList<HealthRecord> getAllHealthRecords()
+    {
+        ArrayList<HealthRecord> lhr = new ArrayList<HealthRecord>();
+        
+        Connection con;//=DbCon.getDbConnection();
+     
+        try{
+            
+                con=DbCon.getDbConnection();
+
+                ResultSet rst=null;
+                Statement stmt=null;
+
+                stmt=con.createStatement();
+                rst=stmt.executeQuery("select * from health1.forum ");
+                while(rst.next()){
+
+                    
+                    HealthRecord h=new HealthRecord(rst.getString("idforum"),rst.getString("topic"),rst.getString("social_worker_id"),rst.getString("problem_id"),rst.getString("problem_details"));
+                    lhr.add(h);
+                }
+                DbCon.closeConnection(con);
+        }
+        
+        
+        
+        catch(Exception e)
+        {
+            System.out.println(e.toString());
+        }
+        
+        
+        
+        return lhr;
+    }
+    
+    
     public static byte[] getImageData(int idhealth_files)
     {
         Connection con;//=DbCon.getDbConnection();
@@ -68,14 +115,6 @@ public class HealthRecord {
         
     }
     
-    public HealthRecord(String topic_id,String topic, String socialWorker_id,String problem_id, String problem_details)
-    {
-        this.topic_id= topic_id;
-        this.problem_id=problem_id;
-        this.socialWorker_id=socialWorker_id;
-        this.problem_details=problem_details;
-        this.topic=topic;
-    }
     
     public static ArrayList<Integer> getImagesList(int topic_id)
     {
@@ -134,7 +173,7 @@ public class HealthRecord {
                 while(rst.next()){
 
                     
-                    HealthRecord h=new HealthRecord(rst.getString("idforum"),rst.getString("topic"),"0","0",rst.getString("problem_details"));
+                    HealthRecord h=new HealthRecord(rst.getString("idforum"),rst.getString("topic"),rst.getString("social_worker_id"),rst.getString("problem_id"),rst.getString("problem_details"));
                     lhr.add(h);
                 }
                 DbCon.closeConnection(con);
@@ -218,46 +257,18 @@ public class HealthRecord {
     {
         return problem_details;
     }
-    public static ArrayList<HealthRecord> getAllHealthRecords()
-    {
-        ArrayList<HealthRecord> lhr = new ArrayList<HealthRecord>();
-        
-        Connection con;//=DbCon.getDbConnection();
-     
-        try{
-            
-                con=DbCon.getDbConnection();
-
-                ResultSet rst=null;
-                Statement stmt=null;
-
-                stmt=con.createStatement();
-                rst=stmt.executeQuery("select * from health1.forum ");
-                while(rst.next()){
-
-                    
-                    HealthRecord h=new HealthRecord(rst.getString("idforum"),rst.getString("topic"),"0","0",rst.getString("problem_details"));
-                    lhr.add(h);
-                }
-                DbCon.closeConnection(con);
-        }
-        
-        
-        
-        catch(Exception e)
-        {
-            System.out.println(e.toString());
-        }
-        
-        
-        
-        return lhr;
-    }
+   
     
     public String getTopic_id()
     {
         
         return topic_id;
+    }
+    
+     public String getProblem_id()
+    {
+        
+        return problem_id;
     }
     
     public static HealthRecord getHealthRecordByID(int id)

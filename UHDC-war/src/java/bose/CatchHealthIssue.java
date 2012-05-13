@@ -39,8 +39,15 @@ public class CatchHealthIssue extends HttpServlet {
             
             HealthRecord hr=new HealthRecord(topic,swid,"0",problem_details);
             hr.insertHealthRecord();
+            
+            String to[]={"rakesh7biswas@gmail.com","sbose78@gmail.com","shivika.ch@gmail.com "};
+            String subject="[TEST] A new health issue has been uploaded at http://boseapp1.jelastic.servint.net/login.jsp ";
+            String content=" Hello moderator, <BR> Please visit the website to check out the issue:  <br>"+topic;
+            content+="<br> This is an automated email sent from the UDHC website <br>";
+            content+="<br><br>Warm regards, <br> The UDHC Team";
+            bose.EmailUtil.sendMail("sbose78", to, subject, content);
                    
-            response.sendRedirect("/UHDC-war/redirectToDiscussion.jsp?message='OK'");
+            response.sendRedirect(request.getContextPath()+"/mySocialUploads.jsp");
         
         } 
         

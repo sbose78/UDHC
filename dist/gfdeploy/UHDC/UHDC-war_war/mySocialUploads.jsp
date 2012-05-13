@@ -102,6 +102,12 @@
         
         
     </head>
+    
+     <h4 align='right'>
+    
+    You are signed in as <%= bose.User.getLoggedInUserEmail(request)  %>
+    
+    </h4>
     <body align="center">
         
         
@@ -172,9 +178,10 @@
                 {
                     String topic=healthRecord.getTopic();
                     String topic_id=healthRecord.getTopic_id();
+                    String problem_id =healthRecord.getProblem_id();
                     
                     
-                    out.println("<h3><a href='#'>"+topic+" </a></h3>");                                  
+                    out.println("<h3><a href='#'>"+problem_id+" : "+topic+" </a></h3>");                                  
                     out.println("<div>");
                   //  out.println("<a href='"+request.getContextPath()+"/updateHealthRecord.jsp?topic_id="+topic_id+"'>UPDATE</a>");
 %>

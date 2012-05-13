@@ -41,6 +41,9 @@ public class MainServlet extends HttpServlet {
         manager = new OpenIdManager();
         manager.setRealm("http://boseapp1.jelastic.servint.net/");
         manager.setReturnTo("http://boseapp1.jelastic.servint.net/openid");
+        
+       // manager.setRealm("http://localhost:8080/UHDC-war/");
+        //manager.setReturnTo("http://localhost:8080/UHDC-war/openid");
     }
 
     @Override
