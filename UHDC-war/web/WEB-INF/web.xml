@@ -24,6 +24,10 @@
         <servlet-name>ViewImage</servlet-name>
         <servlet-class>bose.ViewImage</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CatchSolution</servlet-name>
+        <servlet-class>bose.CatchSolution</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CatchHealthIssue</servlet-name>
         <url-pattern>/CatchHealthIssue</url-pattern>
@@ -48,12 +52,16 @@
         <servlet-name>ViewImage</servlet-name>
         <url-pattern>/ViewImage</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CatchSolution</servlet-name>
+        <url-pattern>/CatchSolution</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
-    
-    
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

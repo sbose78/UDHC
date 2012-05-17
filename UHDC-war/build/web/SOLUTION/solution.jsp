@@ -1,30 +1,17 @@
 <%-- 
-    Document   : problem_list
-    Created on : 28 Apr, 2012, 5:47:27 PM
-    Author     : root
+    Document   : submitSolution.jsp
+    Created on : 28 Apr, 2012, 2:55:33 PM
+    Author     : root - shoubhik bose
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 
-<%@ page import="bose.*" %> 
-<%@ page import="java.util.*" %> 
 
-<html>
-    
-    <head>
-        
-        
-        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+          <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
   
-  <script>
-  $(document).ready(function() {
-    $("#accordion").accordion();
-  }); 
-      </script>
-      
+  
+       <script src="http://yui.yahooapis.com/3.5.0/build/yui/yui-min.js"></script>
   
   <link rel="stylesheet" href="http://www.jqwidgets.com/jquery-widgets-demo/jqwidgets/styles/jqx.base.css" type="text/css" />
     <script type="text/javascript" src="http://www.jqwidgets.com/jquery-widgets-demo/scripts/gettheme.js"></script>
@@ -33,11 +20,55 @@
     <script type="text/javascript" src="http://www.jqwidgets.com/jquery-widgets-demo/jqwidgets/jqxmenu.js"></script>
     <script type="text/javascript" src="http://www.jqwidgets.com/jquery-widgets-demo/jqwidgets/jqxcheckbox.js"></script>
     
+    
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/menu/assets/skins/sam/menu.css" />
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/button/assets/skins/sam/button.css" />
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/fonts/fonts-min.css" />
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/container/assets/skins/sam/container.css" />
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/editor/assets/skins/sam/editor.css" />
+<script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/element/element-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/container/container-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/menu/menu-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/button/button-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/editor/editor-min.js"></script>
+
+
+
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/fonts/fonts-min.css" />
+<script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/yahoo/yahoo-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/event/event-min.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/connection/connection-min.js"></script>
+
+    <script src="http://yui.yahooapis.com/3.5.0/build/yui/yui-min.js"></script>
+
+
+
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/fonts/fonts-min.css" />
+<script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/yahoo/yahoo-min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/SOLUTION/scripts.js"></script>
+
+
+
+    
+
+    
+
+<%@ page import="bose.*" %> 
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+
+    <script src="http://yui.yahooapis.com/3.5.0/build/yui/yui-min.js"></script>
+    
+    <head>
+        
         <script type="text/javascript">
             $(document).ready(function () {
                 var theme = getTheme();
                 // Create a jqxMenu
-                $("#jqxMenu").jqxMenu({ width: '800px', height: '30px', theme: theme });
+                $("#jqxMenu").jqxMenu({ width: '1000px', height: '30px', theme: theme });
                 $("#jqxMenu").css('visibility', 'visible');
                 $("#disabled").jqxCheckBox({ theme: theme, width: '150px', height: '20px' });
                 $("#open").jqxCheckBox({ theme: theme, width: '150px', height: '20px' });
@@ -100,25 +131,25 @@
                 });
             });
         </script>
-  
-        
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>LIST </title>
+        <title>Health record form</title>
     </head>
     
-     <h4 align='right'>
+    <%
+            String topic_id=request.getParameter("topic_id");
+    %>
+    <input type="hidden" value="<%=topic_id%>" id="topic_id">
+    <input type="hidden" value="<%= request.getContextPath() %>" id="context_path">
+    
+    <h4 align='right'>
     
     You are signed in as <%= bose.User.getLoggedInUserEmail(request)  %>
     
     </h4>
-    
-    <body>
+    <div  class="yui-skin-sam" >
         
-        
-        
-        
-        <div id='content' align="center">
+          <div id='content' align="center">
         
         <div id='jqxWidget' style='height: 30px; ' >
             <div id='jqxMenu' style='visibility: hidden; margin-left: 100px; '>
@@ -174,52 +205,29 @@
             </div>            
         </div>
     </div>
-        <h3 align='center'> All Care-Seeker records </h3>
         
-        <%
-                ArrayList<HealthRecord> alhr= HealthRecord.getAllHealthRecords();        
-
-         %>
-        
-        <div id="accordion">
-            
-                <%
-
-                        for (HealthRecord n : alhr)
-                        {
-                            int topic_id=Integer.parseInt(n.getTopic_id());
-                            String problem_id =n.getProblem_id();
+   <body>  <br><br>
+       <div align='center'>
+                    <button  onclick="show_solution_list('<%=request.getContextPath()%>/SOLUTION/viewSolution.jsp?topic_id=<%=topic_id%>')">SHOW SOLUTION</button>
+                    <button  onclick="show_solution_box('<%=request.getContextPath()%>/SOLUTION/submitSolution.jsp')">ADD SOLUTION</button>
+                    <button  onclick="showPosts(<%= topic_id %>)">VIEW MEDICAL HEALTH RECORD</button>
                     
-                    
-                    //out.println("<h3><a href='#'>"+problem_id+" : "+topic+" </a></h3>");      
-                            
-                            
-                %>    
-
-                <h3><a href="#"> <%= problem_id %> &nbsp;:&nbsp; <%= n.getTopic() %>  </a></h3>
-                        <div align="center">
-                                <p>
-                            <a href="<%=request.getContextPath()%>/showIssue.jsp?topic_id=<%=n.getTopic_id()  %>"> Care-seeker narrative  </a>         
-                           &nbsp;&nbsp; ||&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/network.jsp?topic_id=<%=n.getTopic_id()  %>"> Network processing page  </a> 
-                           &nbsp;&nbsp; ||&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/SOLUTION/solution.jsp?topic_id=<%=n.getTopic_id()  %>"> Solution page </a> 
-                            <%            
-                           ArrayList<Integer> images=HealthRecord.getImagesList(topic_id);
-                        int i = 0;
-                        for(Integer image : images )
-                        {        i++;
-                                out.println("<li><a href='"+request.getContextPath()+"/ViewImage?file_id="+image+"'>Attached Image "+i+"</a>,");
-                        }
-
-                          %> 
-                                </p>
-                        </div>	
-                                
-                <%
-                            }
-                %>                                                              
         </div>
-           
-          
+       
+                    
+       <div id="sendSolutionStatus" align="center">  
+       </div>
+                    
+                    
+       <div id="solution_box" align="center">  
+       </div>
+                    
+                                         <div id="posts" onload="showPosts(<%= topic_id %>)"></div>
+
         
+                    
+                    
+                        
+                        
     </body>
 </html>

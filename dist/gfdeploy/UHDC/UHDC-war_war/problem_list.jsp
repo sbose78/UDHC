@@ -201,7 +201,7 @@
                                 <p>
                             <a href="<%=request.getContextPath()%>/showIssue.jsp?topic_id=<%=n.getTopic_id()  %>"> Care-seeker narrative  </a>         
                            &nbsp;&nbsp; ||&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/network.jsp?topic_id=<%=n.getTopic_id()  %>"> Network processing page  </a> 
-                           &nbsp;&nbsp; ||&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/solution.jsp?topic_id=<%=n.getTopic_id()  %>"> Solution page </a> 
+                           &nbsp;&nbsp; ||&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/SOLUTION/solution.jsp?topic_id=<%=n.getTopic_id()  %>"> Solution page </a> 
                             <%            
                            ArrayList<Integer> images=HealthRecord.getImagesList(topic_id);
                         int i = 0;

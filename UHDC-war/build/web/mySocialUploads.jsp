@@ -189,7 +189,7 @@
            
             <a href="<%=request.getContextPath()%>/showIssue.jsp?topic_id=<%=topic_id  %>"> Care-seeker narrative  </a>         
             &nbsp;&nbsp; ||&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/network.jsp?topic_id=<%=topic_id %>"> Network processing page  </a> 
-            &nbsp;&nbsp; ||&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/solution.jsp?topic_id=<%=topic_id  %>"> Solution page </a> 
+            &nbsp;&nbsp; ||&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/SOLUTION/solution.jsp?topic_id=<%=topic_id  %>"> Solution page </a> 
 
 
             <br><br>     Upload more files?
@@ -197,7 +197,7 @@
          <form action="<%=request.getContextPath()%>/UploadImage" method="post" enctype="multipart/form-data" >
              <input name="topic_id" value="<%=topic_id%>" type="hidden">
             <input name="f" type="file" id="f">
-            <input type="submit" >
+            <input type="submit" value="Upload image">
          </form>
     
     

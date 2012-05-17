@@ -18,6 +18,11 @@ public class HealthRecord {
     String socialWorker_id;
     String problem_id;
     
+    public HealthRecord()
+    {
+                
+    }
+    
     public HealthRecord(String topic, String socialWorker_id,String problem_id, String problem_details)
     {
         this.problem_id=problem_id;
@@ -298,5 +303,57 @@ public class HealthRecord {
         
         return h; 
     }
+    
+    public String insertSolution(int topic_id,String solution,String user)
+    {
+        try            
+        {       Connection conn= DbCon.getDbConnection();
+                PreparedStatement pstatement = null;
+               
+                String queryString = "UPDATE health1.forum SET solution_user = ? , solution_content = ? WHERE idforum = "+topic_id;
+                pstatement = conn.prepareStatement(queryString);
+                
+                pstatement.setString(1, user);
+                pstatement.setString(2, solution);
+                
+                int updateQuery = pstatement.executeUpdate();
+                DbCon.closeConnection(conn, pstatement);            
+        }
+        catch(Exception e)
+        {
+            return e.toString();
+        }                        
+        return "OK";
+    }    
+    
+     
+    public static String showSolution(int topic_id)
+    {
+        Connection con;//=DbCon.getDbConnection();
+        String solution_user="";
+        String solution_content="";
+        
+        try{
+                con=DbCon.getDbConnection();
+
+                ResultSet rst=null;
+                Statement stmt=null;
+
+                stmt=con.createStatement();
+                rst=stmt.executeQuery("select solution_user , solution_content from health1.forum where idforum = "+topic_id);
+                while(rst.next()){
+                    solution_user=rst.getString("solution_user");
+                    solution_content=rst.getString("solution_content");
+                    break;
+                }
+                DbCon.closeConnection(con);
+        }       
+        catch(Exception e)
+        {
+            System.out.println(e.toString());
+        }
+                    
+        return solution_content;
+    }    
     
 }

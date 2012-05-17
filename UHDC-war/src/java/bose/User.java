@@ -224,30 +224,53 @@ public class User {
     
     public static String getLoggedInUserName( HttpServletRequest request )
     {
-        if(request.getSession()!=null)
+        try{
+            
+            if(request.getSession()!=null)
+            {
+                String s=(String)request.getSession().getAttribute("name").toString();
+                return s;        
+            }
+
+        }
+        
+        catch(Exception e )
         {
-            String s=(String)request.getSession().getAttribute("name").toString();
-            return s;        
+            return "GUEST";
         }
         return "GUEST";
     }
     
     public static String getLoggedInUserEmail( HttpServletRequest request )
     {
-        if(request.getSession()!=null)
+        try{
+            if(request.getSession()!=null)
+            {
+                String s=(String)request.getSession().getAttribute("email").toString();
+                return s;        
+            }
+        }
+        catch(Exception e)
         {
-            String s=(String)request.getSession().getAttribute("email").toString();
-            return s;        
+            return "GUEST";
         }
         return "GUEST";
     }
     
     public static String getLoggedInUserRole( HttpServletRequest request )
     {
-        if(request.getSession()!=null)
+        try
+                {
+                if(request.getSession()!=null)
+                {
+                    String s=(String)request.getSession().getAttribute("role").toString();
+                    return s;        
+                }
+
+        }
+       catch(Exception e)
         {
-            String s=(String)request.getSession().getAttribute("role").toString();
-            return s;        
+            return "GUEST";
         }
         return "GUEST";
     }
