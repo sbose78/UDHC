@@ -21,7 +21,7 @@ public class EmailUtil {
     {
                     String host = "smtp.gmail.com";
                     from = "sbose78@gmail.com";
-                    String pass = "PASSWORD";
+                    String pass = "**";
                     Properties props = System.getProperties();
                     props.put("mail.smtp.starttls.enable", "true"); // added this line
                     props.put("mail.smtp.host", host);

@@ -4,6 +4,8 @@
  */
 package bose;
 
+
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -69,6 +71,7 @@ public class UploadImage extends HttpServlet {
             }
         }
         
+         
           HealthRecord.insertImage(filecontent,Integer.parseInt(fieldvalue));          
           
           response.sendRedirect(request.getContextPath()+"/mySocialUploads.jsp");

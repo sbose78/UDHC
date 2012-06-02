@@ -45,7 +45,11 @@ public class CatchHealthIssue extends HttpServlet {
             String content=" Hello moderator, <BR> Please visit the website to check out the issue:  <br>"+topic;
             content+="<br> This is an automated email sent from the UDHC website <br>";
             content+="<br><br>Warm regards, <br> The UDHC Team";
-            bose.EmailUtil.sendMail("sbose78", to, subject, content);
+            
+            topic="[ care.udhc.co.in ]"+topic;
+            problem_details="A new issue has been uploaded at <a href='http://care.udhc.co.in/problem_list.jsp'>UDHC NETWORK</a><br><br>"
+                    +problem_details;
+            bose.EmailUtil.sendMail("sbose78", to, topic, problem_details);
                    
             response.sendRedirect(request.getContextPath()+"/mySocialUploads.jsp");
         

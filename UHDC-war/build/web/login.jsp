@@ -9,19 +9,26 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Authentication</title>
+        <title>UDHC Alpha release</title>
     
     
         
-        
+   
         
         
 </head>
+    
 
 <body>
-   
+ 
+ <div><%@include file="hpanel.jsp" %></div>
+ 
+    <table>  
         
-        <h4 align='center'> Yahoo/Google Sign-in </h4>
+        
+        <td width="500px">
+        
+        <h4 align='center'>Sign In with your Yahoo/Google account </h4>
         
         <div align='center'>
             
@@ -29,7 +36,7 @@
             
                         
                         <table>
-                            <td> 
+                            <td > 
                                 
                                 <form action="<%=request.getContextPath() %>/openid" method="get">
                                     <input name="op" value="Yahoo" type="hidden">
@@ -47,8 +54,18 @@
                                 
                             </td>
                         </table>    
-
+        </td>
+        <td width="400px">
+            <h5 align='center'>Live chat with community</h5>
+                                    <iframe src="http://webchat.freenode.net?channels=udhc&uio=Mj10cnVlJjQ9dHJ1ZSY5PXRydWUmMTE9MjM2JjEyPXRydWUe5" width="647" height="400"></iframe>
+                                    
+                                   </td>
+                                    
+                                    
+                                    
                     
         </div>
+                                    
+    </table>
     </body>
 </html>

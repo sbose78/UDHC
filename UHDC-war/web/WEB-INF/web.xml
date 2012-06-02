@@ -28,6 +28,14 @@
         <servlet-name>CatchSolution</servlet-name>
         <servlet-class>bose.CatchSolution</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CatchHealthIssue2</servlet-name>
+        <servlet-class>bose.CatchHealthIssue2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UploadToDocs</servlet-name>
+        <servlet-class>bose.google.UploadToDocs</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CatchHealthIssue</servlet-name>
         <url-pattern>/CatchHealthIssue</url-pattern>
@@ -55,6 +63,14 @@
     <servlet-mapping>
         <servlet-name>CatchSolution</servlet-name>
         <url-pattern>/CatchSolution</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CatchHealthIssue2</servlet-name>
+        <url-pattern>/CatchHealthIssue2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadToDocs</servlet-name>
+        <url-pattern>/UploadToDocs</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

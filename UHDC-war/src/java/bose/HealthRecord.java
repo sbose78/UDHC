@@ -17,6 +17,7 @@ public class HealthRecord {
     String problem_details;
     String socialWorker_id;
     String problem_id;
+    InputStream consent_letter;
     
     public HealthRecord()
     {
@@ -32,8 +33,20 @@ public class HealthRecord {
         
     }
     
+    
+    public HealthRecord(String topic, String socialWorker_id,String problem_id, String problem_details, InputStream consent_letter)
+    {
+        this.consent_letter=consent_letter;
+        this.problem_id=problem_id;
+        this.socialWorker_id=socialWorker_id;
+        this.problem_details=problem_details;
+        this.topic=topic;
+        
+    }
+    
     public HealthRecord(String topic_id,String topic, String socialWorker_id,String problem_id, String problem_details)
     {
+        
         this.topic_id= topic_id;
         this.problem_id=problem_id;
         this.socialWorker_id=socialWorker_id;
@@ -253,6 +266,37 @@ public class HealthRecord {
         }
         return "OK";
     }   
+    
+    public String insertHealthRecord2()
+    {
+        try            
+        {
+               this.problem_id=User.getScientificName();
+                Connection conn= DbCon.getDbConnection();
+                PreparedStatement pstatement = null;
+
+                String queryString = "INSERT INTO forum(topic,social_worker_id,problem_details,problem_id,consent_letter) VALUES (?,?, ?,?,?)";
+                pstatement = conn.prepareStatement(queryString);
+                
+                pstatement.setString(1, this.topic);
+                pstatement.setString(2, this.socialWorker_id);
+                
+                pstatement.setString(3, this.problem_details);
+                pstatement.setString(4, this.problem_id);
+                pstatement.setBlob(5, consent_letter);                
+                
+                int updateQuery = pstatement.executeUpdate();
+                
+                DbCon.closeConnection(conn, pstatement);
+            
+        }
+        catch(Exception e)
+        {
+            return e.toString();
+        }
+        return "OK";
+    }   
+    
     
     public String getTopic()
     {

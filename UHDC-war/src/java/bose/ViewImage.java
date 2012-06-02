@@ -31,7 +31,7 @@ public class ViewImage extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("image/jpeg");
+        response.setContentType("image/png");
       //  PrintWriter out = response.getWriter();
          OutputStream o = response.getOutputStream();
         byte imbytes[]=null;

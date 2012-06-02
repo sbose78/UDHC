@@ -39,11 +39,18 @@ public class MainServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         manager = new OpenIdManager();
-       // manager.setRealm("http://boseapp1.jelastic.servint.net/");
-       // manager.setReturnTo("http://boseapp1.jelastic.servint.net/openid");
+     //   manager.setRealm("http://boseapp1.jelastic.servint.net/");
+     //   manager.setReturnTo("http://boseapp1.jelastic.servint.net/openid");
         
-        manager.setRealm("http://localhost:8080/UHDC-war/");
-       manager.setReturnTo("http://localhost:8080/UHDC-war/openid");
+    //  manager.setRealm("http://www.udhc.co.in/");
+    //  manager.setReturnTo("http://www.udhc.co.in/openid");
+       
+        
+  //     manager.setRealm("http://localhost:8080/UHDC-war/");
+    //   manager.setReturnTo("http://localhost:8080/UHDC-war/openid");
+        
+         manager.setRealm("http://care.udhc.co.in/");
+         manager.setReturnTo("http://care.udhc.co.in/openid");
     }
 
     @Override
@@ -52,7 +59,7 @@ public class MainServlet extends HttpServlet {
         
             // manager.setRealm(request.getrequest.getContextPath());
         //manager.setReturnTo(request.getContentType()+"/openid");
-        
+      //  System.out.println("Referer:"+request.getHeader("Referer").toString());
         String op = request.getParameter("op");
         if (op==null) {
                             // check sign on result from Google or Yahoo:
