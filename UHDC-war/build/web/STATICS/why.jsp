@@ -13,6 +13,9 @@
     </head>
     <body>
         
+          <div id="content_space">
+
+        
         <div align='center'><%@include file="../hpanel.jsp" %></div>
         
       
@@ -34,7 +37,7 @@
         <iframe width="900px" height="1200px" align='center' src="https://docs.google.com/document/pub?id=1ykXNFgPzpiBZyVVeFRXwpMBXaHb5ZD4IX2jDwgncoaU&amp;embedded=true"></iframe>    
         </div>
         
-        
+          </div>
         
         
     </body>

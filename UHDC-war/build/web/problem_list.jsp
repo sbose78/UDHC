@@ -10,13 +10,12 @@
 <%@ page import="bose.*" %> 
 <%@ page import="java.util.*" %> 
 
+<div><%@include file="widget-code.jsp" %></div>
+
 <html>
     
     <head>
         
-        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
   
   
   <script type="text/javascript" src="thickbox.js"></script>
@@ -36,11 +35,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>LIST </title>
         
-</head>  <div align='center'><%@include file="hpanel.jsp" %></div>
+</head>  
     
           
     <body>      
-      
+        
+      <div id="content_space">
+
+          <div><%@include file="hpanel.jsp" %></div>
         <h3 align='center'> All Care-Seeker records </h3>
         
         <%
@@ -88,7 +90,7 @@
                             }
                 %>                                                              
         </div>
-           
+      </div>           
           
         
     </body>

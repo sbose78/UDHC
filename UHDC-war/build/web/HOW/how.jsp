@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+<div><%@include file="../widget-code.jsp" %></div>
+
 <html lang="en">
 <head>
         <title> UDHC: HOW </title>
@@ -6,14 +9,23 @@
     
 </head>
 
- <div><%@include file="../hpanel.jsp" %></div>
+
 
 <body class='default'>
+    
+    <div id="content_space">
+        
+    
+     <div><%@include file="../hpanel.jsp" %></div>
+    
     <div id='jqxWidget' align='center' >
+        
+         <br><br>
+          <br><br>
         
         <div align='center' >
             
-            <input type="button" value="Pneumomediastimum Ganiari" class='name_button' />    
+            <b>Pneumomediastimum Ganiari</b>
             
         </div>
         
@@ -45,7 +57,7 @@
         <br><br>
         <div align='center'>
             
-             <input type="button" value="  SDH Mathabhanga" class='name_button' />    
+            <b>SDH Mathabhanga</b>
           </div>
         <br><br>
         <div class='jqxTabs'>
@@ -72,6 +84,9 @@
         </div>
        
         
+        
     </div>
+    </div>
+     <div><%@include file="../footer.jsp" %></div>
 </body>
 </html>

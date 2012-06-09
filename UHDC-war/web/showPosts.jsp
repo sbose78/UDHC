@@ -10,27 +10,24 @@
 <%@ page import="bose.*" %> 
 <%@ page import="java.util.*" %> 
 
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        
+       
+<div class="div_posts_box">
+    
+    <div class='div_posts_list'>
+
         <%
-        
+      //      out.println("<div class='div_posts_list'>");
             int topic_id=Integer.parseInt(request.getParameter("topic_id"));
             ArrayList<bose.ForumPost> posts = bose.ForumPost.getPostsByTopic_id(topic_id);
-            out.println(topic_id);
+        //    out.println("<br><B>"+topic_id+"</B>");
              for (ForumPost f : posts)
              {
-                out.println("<p>"  );
-                out.println( f.getEmail() +" said, <br>"  );
-                out.println(f.getPost_data() + "<br> </p>");
+                out.println("<div class='div_post_author'>"  );   
+                out.println( f.getEmail() +" said, </div><br>"  );
+                out.println("<div class='div_post_content'>"+f.getPost_data() + "<br> </div>");
              }
+             
+             //out.println("</div>");
         %>
-        
-        
-        
-    </body>
-</html>
+        </div>
+</div>        

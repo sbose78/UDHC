@@ -4,11 +4,15 @@
     Author     : root
 --%>
 
+
+
 <%@page import="bose.HealthRecord"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+        
+ 
         
           <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
@@ -64,7 +68,7 @@
         
         
         
-        <h2 align="center"> Network processing  </h2>
+        <h3 align="center"> Network processing  </h3>
         
         
         <div align="center">
@@ -74,16 +78,16 @@
                            
             %>   
             <button  onclick="hide()">HIDE NARRATIVE</button>
-            <button  onclick="makeRequest()">SHOW NARRATIVE</button>
+            <button  onclick="makeRequest()">REFRESH NARRATIVE</button>
             
         </div>
         
-        
-        <div align="left" id="narrative">
+            <br>
+            <div id="narrative">
             
                                           
         </div>
-        
+        <br>
   <script type="text/javascript">
             
             function hide()
@@ -104,6 +108,7 @@
 var handleSuccess = function(o){
     
         div.innerHTML="";
+        div.className="div_issue";
 	YAHOO.log("The success handler was called.  tId: " + o.tId + ".", "info", "example");
 	if(o.responseText !== undefined){
 	               
@@ -140,7 +145,7 @@ var postData = "username=anonymous&userid=0";
 function makeRequest(){
     
                 div.innerHTML="";
-                div.innerHTML="<p align='center'> <img src='http://www.freeiconsweb.com/Icons-show/loading/loading37.gif'/></p>";
+                div.innerHTML="<p align='center'> <img src='http://www.superpurses.com/images/loading.gif'/></p>";
 
         var topic_id= <%=topic_id%>;
 	var request = YAHOO.util.Connect.asyncRequest('GET', '<%=request.getContextPath() %>/showIssue.jsp?topic_id='+topic_id, callback);
@@ -154,17 +159,17 @@ function makeRequest(){
         
          <div align='center'>
                     <button  onclick="hide_posts()">HIDE POSTS</button>
-                    <button  onclick="showPosts()">SHOW POSTS</button>
+                    <button  onclick="showPosts()">REFRESH POSTS</button>
                     
         </div>
-        
+        <br>
         <div id="posts" onload="showPosts()">
             
             
             
             
         </div>
-        
+        <br>
         
  <script> 
        function hide_posts()
@@ -215,7 +220,7 @@ var postData = "username=anonymous&userid=0";
 */
 function showPosts(){
 
-        posts.innerHTML="<p align='center'> <img src='http://www.freeiconsweb.com/Icons-show/loading/loading37.gif'/></p>";
+        posts.innerHTML="<p align='center'> <img src='http://www.superpurses.com/images/loading.gif'/></p>";
 
         var topic_id= <%=topic_id%>;
 	var request = YAHOO.util.Connect.asyncRequest('GET', '<%=request.getContextPath() %>/showPosts.jsp?topic_id='+topic_id, callback_posts);
@@ -223,7 +228,12 @@ function showPosts(){
 	YAHOO.log("Initiating request; tId: " + request.tId + ".", "info", "example");
 
 }
-            
+
+window.onload=function(){
+    
+    showPosts();
+    makeRequest();
+}
 </script>
         
         
@@ -245,10 +255,10 @@ function showPosts(){
                                         <textarea id="editor" name="editor" rows="20" cols="75" >
                                         </textarea>
                                        
-                                        <input type="text" id="v" name="post_data">
+                                        <input type="hidden" id="v" name="post_data">
                                         <input type="hidden" id="topic_id" name="topic_id" value="<%=request.getParameter("topic_id")%>">
                                         <br>
-                                        <input type="button" name="b" id="b" value="SUBMIT">
+                                        <input type="button" name="b" id="b" value="POST COMMENT">
                                    </p>
 
                                 </form>

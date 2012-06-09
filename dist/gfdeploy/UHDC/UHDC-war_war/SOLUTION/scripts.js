@@ -67,7 +67,7 @@ var callback_viewSolutionList =
 function viewSolutionList(sURL)
 {    
         div.innerHTML="";
-        div.innerHTML="<p align='center'> <img src='http://www.freeiconsweb.com/Icons-show/loading/loading37.gif'/></p>";
+        div.innerHTML="<p align='center'> <img src='http://www.superpurses.com/images/loading.gif'/></p>";
         var request = YAHOO.util.Connect.asyncRequest('GET', sURL.toString(), callback_viewSolutionList);	
 	YAHOO.log("Initiating request; tId: " + request.tId + ".", "info", "example");
 }       
@@ -160,7 +160,7 @@ var callback =
 function makeRequest_solution_box(sURL)
 {    
         div.innerHTML="";
-        div.innerHTML="<p align='center'> <img src='http://www.freeiconsweb.com/Icons-show/loading/loading37.gif'/></p>";
+        div.innerHTML="<p align='center'> <img src='http://www.superpurses.com/images/loading.gif'/></p>";
         var request = YAHOO.util.Connect.asyncRequest('GET', sURL.toString(), callback);	
 	YAHOO.log("Initiating request; tId: " + request.tId + ".", "info", "example");
 }
@@ -286,7 +286,7 @@ var postData = "username=anonymous&userid=0";
 function showPosts(topic_id){
         topic_id=topic_id.toString();
          posts=document.getElementById("posts");
-        posts.innerHTML="<p align='center'> <img src='http://www.freeiconsweb.com/Icons-show/loading/loading37.gif'/></p>";        
+        posts.innerHTML="<p align='center'> <img src='http://localhost:8080/UHDC-war/SOLUTION/solution.jsp?topic_id=43'/></p>";        
         
         
          var context_path=document.getElementById("context_path").value;

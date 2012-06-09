@@ -4,8 +4,14 @@
     Author     : root
 --%>
 
+
+<div><%@include file="../widget-code.jsp" %></div>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+
 <html>
     <head>
         <script type="text/javascript" src="script.js"></script>
@@ -15,10 +21,12 @@
     </head>
     <body onload="renderRichText()">
         
-            <div><%@include file="../hpanel.jsp" %></div>
+        <div id="content_space">
+        
+        <div><%@include file="../hpanel.jsp" %></div>
         
         
-      <div align="center">            
+      <div  align="center">            
         <div id='input_tabs'>
 
             <ul>
@@ -46,7 +54,7 @@
       </div>
        
         
-        
-        
+        </div>  
+        <div><%@include file="../footer.jsp" %></div>
     </body>
 </html>

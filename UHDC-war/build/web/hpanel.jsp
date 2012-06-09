@@ -1,14 +1,6 @@
-<%-- 
-    Document   : hpanel
-    Created on : 18 May, 2012, 8:31:18 PM
-    Author     : root
---%>
+
 
         
-            <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-   
   
         
         
@@ -20,9 +12,10 @@
 
          
                   <link rel="stylesheet" href="<%=request.getContextPath()%>/jqwidgets/styles/jqx.darkblue.css" type="text/css" />
+                  
+                  <link rel="stylesheet" href="<%=request.getContextPath()%>/mystyle.css" type="text/css" />
 
-    <script type="text/javascript" src="http://www.jqwidgets.com/jquery-widgets-demo/scripts/gettheme.js"></script>
-    <script type="text/javascript" src="http://www.jqwidgets.com/jquery-widgets-demo/scripts/jquery-1.7.1.min.js"></script>
+
     <script type="text/javascript" src="<%=request.getContextPath()%>/jqwidgets/jqxcore.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/jqwidgets/jqxmenu.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/jqwidgets/jqxcheckbox.js"></script>
@@ -35,14 +28,17 @@
                 var theme = 'energyblue';//getTheme();
                 // Create a jqxMenu
                 
-                $("#input_tabs").jqxTabs({ position: 'top', width: '1200px', height: '1000px' , theme: theme, reorder: true });
+                $("#input_tabs").jqxTabs({ position: 'top', width: '1100px', height: '1000px' , theme: theme, reorder: true });
                 $(".accordion").accordion({ autoHeight: true , clearStyle: true });
                 $("#b").jqxButton({ width: '500px', height: '30px', theme: theme });
                 $(".name_button").jqxButton({ width: '450', height: '40', theme: 'darkblue' });
                 $('.jqxTabs').jqxTabs({ position: 'top', width: '1000px', height: '700px' , theme: theme, reorder: true });
-                $("#jqxMenu").jqxMenu({ width: '700px', height: '30px', theme: theme });
-                $("#jqxMenu").css('visibility', 'visible');
+//                $("#jqxMenu").jqxMenu({ width: '540px', height: '30px', theme: theme });
+ //               $("#jqxMenu").css('visibility', 'visible');
+                //$("#jqxMenu").css('margin-left', '40px');
+
                 $("#disabled").jqxCheckBox({ theme: theme, width: '150px', height: '20px' });
+                
                 $("#open").jqxCheckBox({ theme: theme, width: '150px', height: '20px' });
                 $("#hover").jqxCheckBox({ theme: theme, width: '150px', height: '20px' });
                 $("#topLevelArrows").jqxCheckBox({ theme: theme, width: '200px', height: '20px' });
@@ -126,20 +122,20 @@
   })();
 
 </script>
-        
-<h3 align='center'>   USER DRIVEN HEALTH CARE: Global Learning Towards Local Care   </h3>
 
 
-    
-   
+                   <link rel="stylesheet" href="<%=request.getContextPath()%>/mystyle.css" type="text/css" />
 
 
-        <div id='content' align="center">
-        
-        <div id='jqxWidget' style='height: 30px; ' >
-            <div id='jqxMenu' style='visibility: hidden; margin-left: 70px; '>
-                <ul>
-                    <li><a href="<%=request.getContextPath()%>/home.jsp">HOME</a></li>
+<h2>User-driven healthcare</h2>
+     
+     
+     <div id="horizontal_nav_bar">
+         
+         <ul>
+             
+             
+              <li><a href="<%=request.getContextPath()%>/home.jsp">HOME</a></li>
                     <li><a href="<%=request.getContextPath()%>/HOW/how.jsp">HOW</a></li>                    
                     <li><a href='<%=request.getContextPath()%>/STATICS/what.jsp'> WHAT</a></li>             
                     
@@ -150,23 +146,14 @@
                     <li><a href='<%=request.getContextPath()%>/problem_list.jsp'>PROCESS</a></li>
                     
                     <li><a href='<%=request.getContextPath()%>/problem_list.jsp'>OUTPUT</a>                  </li>
+                                   
+             
+             
+         </ul>
+         
+         
+         
+     </div>
                     
-                     <li>You are signed in as <%= bose.User.getLoggedInUserEmail(request)  %>
-                        
-                        <ul style='width: 180px;'>
-                            <li><a href="<%=request.getContextPath()%>/home.jsp">LOG OUT/ LOG IN</a></li>
-                            <li><a href="<%=request.getContextPath()%>/home.jsp">My profile</a></li>
-                        </ul> 
                     
-                    </li>
-                    
-                </ul>      
-            </div>            
-        </div>
-    </div>
-                        
-        <br>
-        <br>
-        
-
-
+     

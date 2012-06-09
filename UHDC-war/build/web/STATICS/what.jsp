@@ -12,6 +12,9 @@
         <title>UDHC: What?</title>
     </head>
     
+      <div id="content_space">
+
+    
      <div><%@include file="../hpanel.jsp" %></div>
 
     
@@ -20,5 +23,6 @@
             
           <iframe width ="800px" height ="950px" src="https://docs.google.com/document/pub?id=1Oc62guDeT2-LUyqkeqp1BGwV-abvjK8YWVkfi8cG9T8&amp;embedded=true"></iframe>
         </div>
+      </div>
     </body>
 </html>
