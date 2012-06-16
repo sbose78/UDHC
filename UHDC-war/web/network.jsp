@@ -63,20 +63,20 @@
         
         
         
+         <%
+               String topic_id=request.getParameter("topic_id");
+          //     out.println(HealthRecord.getHealthRecordByID(Integer.parseInt(topic_id)).getProblem_details());
+                
+        
+        %>
         
         
-        
-        
-        
-        <h3 align="center"> Network processing  </h3>
+        <h3 align="center"> Network processing : <%=bose.HealthRecord.getHealthRecordByID(Integer.parseInt(topic_id)).getTopic()%></h3>
         
         
         <div align="center">
-           <%
-               String topic_id=request.getParameter("topic_id");
-          //     out.println(HealthRecord.getHealthRecordByID(Integer.parseInt(topic_id)).getProblem_details());
-                           
-            %>   
+                     
+              
             <button  onclick="hide()">HIDE NARRATIVE</button>
             <button  onclick="makeRequest()">REFRESH NARRATIVE</button>
             
@@ -222,6 +222,7 @@ function showPosts(){
 
         posts.innerHTML="<p align='center'> <img src='http://www.superpurses.com/images/loading.gif'/></p>";
 
+
         var topic_id= <%=topic_id%>;
 	var request = YAHOO.util.Connect.asyncRequest('GET', '<%=request.getContextPath() %>/showPosts.jsp?topic_id='+topic_id, callback_posts);
 	
@@ -255,7 +256,7 @@ window.onload=function(){
                                         <textarea id="editor" name="editor" rows="20" cols="75" >
                                         </textarea>
                                        
-                                        <input type="hidden" id="v" name="post_data">
+                                        <input type="text" id="v" name="post_data">
                                         <input type="hidden" id="topic_id" name="topic_id" value="<%=request.getParameter("topic_id")%>">
                                         <br>
                                         <input type="button" name="b" id="b" value="POST COMMENT">
@@ -356,13 +357,21 @@ window.onload=function(){
                             
                             sendPostStatus.innerHTML="POSTING....";
 
+                            var formObject=document.getElementById("form1");
+                            YAHOO.util.Connect.setForm(formObject);
+                            var cObj = YAHOO.util.Connect.asyncRequest('POST', '<%=request.getContextPath() %>/CatchForumPost', callback_sendPost);
+
+/*
                             var topic_id_param=document.getElementById("topic_id").value;                            
                             var post_data_param=document.getElementById("v").value;                            
                             
                         var postData_sendPost = "topic_id="+topic_id_param+"&post_data="+post_data_param;
                                //alert( " Postinng "  );
                                 //sendPostStatus.inner="Posting comment, please wait...."
-   var request = YAHOO.util.Connect.asyncRequest('POST', '<%=request.getContextPath() %>/CatchForumPost', callback_sendPost, postData_sendPost);
+*/
+
+
+   //var request = YAHOO.util.Connect.asyncRequest('POST', '<%=request.getContextPath() %>/CatchForumPost', callback_sendPost, postData_sendPost);
 
                                 YAHOO.log("Initiating request; tId: " + request.tId + ".", "info", "example");
 

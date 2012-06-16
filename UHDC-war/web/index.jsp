@@ -64,7 +64,7 @@
                     <p align='center'>
                         <label>
                             What is the problem in Short ?
-                        <input type="text" maxlength="50" name="topic">
+                        <input type="text" maxlength="100" name="topic">
                         
                         </label> &nbsp;
                         

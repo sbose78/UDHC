@@ -31,3 +31,51 @@ function renderRichText()
                                 document.form1.submit();
                             });
 }
+
+ var handleSuccess_posts = function(o){
+        
+	YAHOO.log("The success handler was called.  tId: " + o.tId + ".", "info", "example");
+	if(o.responseText !== undefined){
+	               
+        //        div.innerHTML = "<li>Transaction id: " + o.tId + "</li>";
+	//	div.innerHTML += "<li>HTTP status: " + o.status + "</li>";
+	//	div.innerHTML += "<li>Status code message: " + o.statusText + "</li>";
+	//	div.innerHTML += "<li>HTTP headers received: <ul>" + o.getAllResponseHeaders + "</ul></li>";
+		posts.innerHTML = o.responseText  ;
+	//	div.innerHTML += "<li>Argument object: Array ([0] => " + o.argument[0] +
+						 " [1] => " + o.argument[1] + " )</li>";
+	}
+};
+
+var handleFailure_posts = function(o){
+		YAHOO.log("The failure handler was called.  tId: " + o.tId + ".", "info", "example");
+
+	if(o.responseText !== undefined){
+		posts.innerHTML = "<li>Transaction id: " + o.tId + "</li>";
+		posts.innerHTML += "<li>HTTP status: " + o.status + "</li>";
+		posts.innerHTML += "<li>Status code message: " + o.statusText + "</li>";
+	}
+};
+
+var callback_posts =
+{
+  success:handleSuccess_posts,
+  failure:handleFailure_posts,
+  argument:['foo','bar']
+};
+
+/*
+var sUrl = "assets/post.php";
+var postData = "username=anonymous&userid=0";
+*/
+function showIssue(topic_id, context_path){
+        topic_id=topic_id.toString();
+         posts=document.getElementById("displayInputs_narrative_details");
+        posts.innerHTML="<p align='center'> <img src='http://www.superpurses.com/images/loading.gif'/></p>";        
+        
+        
+ //        var context_path=document.getElementById("context_path").value;
+	var request = YAHOO.util.Connect.asyncRequest('GET', 'showIssue.jsp?topic_id='+topic_id, callback_posts);	
+	YAHOO.log("Initiating request; tId: " + request.tId + ".", "info", "example");
+
+}

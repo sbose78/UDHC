@@ -127,7 +127,7 @@
                    <link rel="stylesheet" href="<%=request.getContextPath()%>/mystyle.css" type="text/css" />
 
 
-<h2>User-driven healthcare</h2>
+                   <h2><a href="<%=request.getContextPath()%>/login.jsp">User-driven healthcare</a></h2>
      
      
      <div id="horizontal_nav_bar">
@@ -141,9 +141,9 @@
                     
                     <li><a href='<%=request.getContextPath()%>/STATICS/why.jsp'>WHY</a></li>
                     
-                      <li><a href='<%=request.getContextPath()%>/INPUT/input.jsp'>INPUT</a></li>
+                      <li><a href='<%=request.getContextPath()%>/INPUT/displayInputs.jsp'>INPUT</a></li>
                     
-                    <li><a href='<%=request.getContextPath()%>/problem_list.jsp'>PROCESS</a></li>
+                    <li><a href='<%=request.getContextPath()%>/PROCESS/process.jsp'>PROCESS</a></li>
                     
                     <li><a href='<%=request.getContextPath()%>/problem_list.jsp'>OUTPUT</a>                  </li>
                                    

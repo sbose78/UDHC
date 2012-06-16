@@ -22,7 +22,7 @@
         //    out.println("<br><B>"+topic_id+"</B>");
              for (ForumPost f : posts)
              {
-                out.println("<div class='div_post_author'>"  );   
+                out.println("<br><div class='div_post_author'>"  );   
                 out.println( f.getEmail() +" said, </div><br>"  );
                 out.println("<div class='div_post_content'>"+f.getPost_data() + "<br> </div>");
              }

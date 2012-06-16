@@ -49,14 +49,17 @@ public class User {
                 Statement stmt=null;
 
                 stmt=con.createStatement();
+                con.setAutoCommit(false);
                 rst=stmt.executeQuery("select name from health1.scientific_names where used = 0 ");
+              
                 while(rst.next()){
                     
                     
                         String name=rst.getString("name");
+                          stmt.executeUpdate("UPDATE health1.scientific_names SET used = 1  WHERE name= '"+name+"'");
                         System.out.println(name);
                     //    name=sanitizeName(name);
-                        
+                        con.commit();
                         DbCon.closeConnection(con);
                         return name;
                 }
