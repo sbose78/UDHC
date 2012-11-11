@@ -5,6 +5,19 @@
 --%>
 
 
+<%
+
+    if(bose.User.getLoggedInUserEmail(request).equals("GUEST"))
+    {
+        
+        String redirect_url=request.getContextPath()+"/index.jsp";
+        request.getSession(true).setAttribute("redirect_url", redirect_url);
+        response.sendRedirect(request.getContextPath()+"/account.jsp?message=YOU ARE NOT SIGNED IN");        
+        //String link=request.getContextPath()+"/login_float.jsp";
+    }
+
+%>
+
 
           <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
@@ -72,7 +85,7 @@
                         <label> UPLOAD Letter of consent (<a href="" >Learn more</a> ) : <input name="f" type="file" id="f"> </label>
                         
                         <br><br> Write or paste the care-seeker narrative here <br><br>
-                   
+                   <label> UPLOAD Letter of consent (<a href="" >Learn more</a> ) : <input name="f" type="file" id="f"> </label>
                         
                         
          <textarea id="editor" name="editor" rows="20" cols="75" >

@@ -14,7 +14,7 @@
             function show_solution_list(sURL)
             {
                 div=document.getElementById("solution_box");
-                document.getElementById("solution_box").innerHTML="";
+                document.getElementById("solution_box").innerHTML="LOADING SOLUTION...";
                 viewSolutionList(sURL);
 
             }
@@ -168,12 +168,7 @@ function makeRequest_solution_box(sURL)
        
        
        /*
-        *
-        *
-        *  this part makes an AJAX post for the solution given by a doctor
-        *
-        *
-        *
+          this part makes an AJAX post for the solution given by a doctor
         */
 
 var sendSolutionStatus  ;

@@ -39,18 +39,18 @@ public class MainServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         manager = new OpenIdManager();
-     //   manager.setRealm("http://boseapp1.jelastic.servint.net/");
-     //   manager.setReturnTo("http://boseapp1.jelastic.servint.net/openid");
+    //    manager.setRealm("http://boseapp1.jelastic.servint.net/");
+    //    manager.setReturnTo("http://boseapp1.jelastic.servint.net/openid");
         
-    //  manager.setRealm("http://www.udhc.co.in/");
-    //  manager.setReturnTo("http://www.udhc.co.in/openid");
+  //    manager.setRealm("http://www.udhc.co.in/");
+  //    manager.setReturnTo("http://www.udhc.co.in/openid");
        
         
-  //     manager.setRealm("http://localhost:8080/UHDC-war/");
-    //   manager.setReturnTo("http://localhost:8080/UHDC-war/openid");
-        
-         manager.setRealm("http://care.udhc.co.in/");
-         manager.setReturnTo("http://care.udhc.co.in/openid");
+   //   manager.setRealm("http://localhost:8080/UHDC-war/");
+   //   manager.setReturnTo("http://localhost:8080/UHDC-war/openid");
+       
+      manager.setRealm("http://care.udhc.co.in/");
+      manager.setReturnTo("http://care.udhc.co.in/openid");
     }
 
     @Override
@@ -65,7 +65,7 @@ public class MainServlet extends HttpServlet {
                             // check sign on result from Google or Yahoo:
                             checkNonce(request.getParameter("openid.response_nonce"));
                             // get authentication:
-                            byte[] mac_key = (byte[]) request.getSession().getAttribute(ATTR_MAC);
+                            byte[] mac_key = (byte[]) request.getSession(true).getAttribute(ATTR_MAC);
                             String alias = (String) request.getSession().getAttribute(ATTR_ALIAS);
                             Authentication authentication = manager.getAuthentication(request, mac_key, alias);
                             response.setContentType("text/html; charset=UTF-8");
@@ -76,11 +76,31 @@ public class MainServlet extends HttpServlet {
                         request.getSession().setAttribute("name",authentication.getFullname());
                         request.getSession().setAttribute("email",authentication.getEmail());
                         request.getSession().setAttribute("gender",authentication.getGender());
+                        //request.getSession().setAttribute("gender",authentication.getGender());
 
+                        System.out.println("----1----");
+                        
+                        
                         if(User.checkUserPresence(authentication.getEmail()))
                         {
-                            response.sendRedirect(request.getContextPath()+"/problem_list.jsp");
-                            return;
+                                      String email=authentication.getEmail();
+                                      String name=bose.User.getName(authentication.getEmail().toString());
+                                      String role=""+bose.User.getLoggedInUserRole(email);
+                                      System.out.println("Role"+role);
+                                      request.getSession().setAttribute("role",role);
+                                      
+                                      // save name to session object This is possible only for care-givers
+                                      request.getSession().setAttribute("name",name);
+                                      String redirect_to=bose.User.getRedirectURL(request);
+                                      if(redirect_to==null) 
+                                      {
+                                          redirect_to=request.getContextPath()+"/home.jsp";
+                                      }
+                                      
+                                      System.out.println("----2----"+redirect_to );
+                                      
+                                      response.sendRedirect(redirect_to);
+                                      return;                            
                         }
                         else
                         {

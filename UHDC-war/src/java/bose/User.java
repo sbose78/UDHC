@@ -27,6 +27,17 @@ public class User {
     String userid;
     String name;
     
+    // this constructor is used for the PATIENT table. 
+    // name = scientific name of patient
+    // email = email of social worker
+    
+    public User(String name, String email)
+    {
+        this.name=name;
+        this.email=email;
+               
+    }
+    
     public User(int role,String email,int approved,String name,String userid)
     {
         this.role=role;
@@ -34,6 +45,17 @@ public class User {
         this.approved=approved;
         this.name=name;
         this.userid=userid;
+    }
+    
+    public String getName()
+     {
+        return name;
+        
+    }
+    
+    public String getEmail()
+    {
+        return email;
     }
     
     public static String getScientificName()
@@ -57,7 +79,7 @@ public class User {
                     
                         String name=rst.getString("name");
                           stmt.executeUpdate("UPDATE health1.scientific_names SET used = 1  WHERE name= '"+name+"'");
-                        System.out.println(name);
+                      //  System.out.println(name);
                     //    name=sanitizeName(name);
                         con.commit();
                         DbCon.closeConnection(con);
@@ -218,12 +240,139 @@ public class User {
         
     }
     
+    public static ArrayList<User> getPatientsBySocialWorkerID(String social_worker_id)
+    {
+        
+        Connection con;//=DbCon.getDbConnection();
+        
+        ArrayList<User> user_al=new ArrayList<User>();
+     
+        try{
+            
+                con=DbCon.getDbConnection();
+
+                ResultSet rst=null;
+                Statement stmt=null;
+
+                stmt=con.createStatement();
+                rst=stmt.executeQuery("select * from health1.patient where social_worker_id = '"+social_worker_id+"'");
+                while(rst.next()){
+                    
+                    String social_worker=rst.getString("social_worker_id");
+                    String name=rst.getString("name") ;
+                    
+                    
+                    User user=new User(name,social_worker);
+                    user_al.add(user);
+                        //return true;
+                }
+                DbCon.closeConnection(con);
+        }
+        
+        
+        
+        catch(Exception e)
+        {
+            System.out.println(e.toString());
+        }
+        
+        
+        return user_al;
+    }
+    
+    
+    
+    
+    public String insertSocialWorkerPatient()
+    {
+        String name=this.name;
+        String social_worker_id=this.email;
+         try
+        {
+                Connection conn= DbCon.getDbConnection();
+                PreparedStatement pstatement = null;        
+
+                String queryString = "INSERT INTO health1.patient(name,social_worker_id) VALUES (?, ?)";
+                pstatement = conn.prepareStatement(queryString);                
+                
+                pstatement.setString(1, name);                
+                pstatement.setString(2, social_worker_id);
+                
+                int updateQuery = pstatement.executeUpdate();                
+                DbCon.closeConnection(conn, pstatement);            
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.toString());
+            return e.toString();
+            
+        }
+                
+        
+     
+        return "OK";
+    }
+    
     public static String getName(String email)
     {
         
-        return "NAME";
+                    Connection con;//=DbCon.getDbConnection();
+                    String name="";
+
+                            try{
+
+                                    con=DbCon.getDbConnection();
+
+                                    ResultSet rst=null;
+                                    Statement stmt=null;
+
+                                    stmt=con.createStatement();
+                                    rst=stmt.executeQuery("SELECT name FROM health1.user_roles where email = '"+email+"'");//'sbose78@gmail.com'");
+                                    while(rst.next()){
+                                        name= rst.getString("name");
+                                    }
+                                    DbCon.closeConnection(con);
+                                    
+                            }
+
+
+
+                            catch(Exception e)
+                            {
+                                System.out.println(e.toString());
+                            }
+ 
+                               if(name.equals(""))
+                               {
+                                   name="ANONYMOUS";
+                               }
+
+                               
+                            return name;
+
+        
     }
     
+    
+    public static String getRedirectURL(HttpServletRequest request )
+    {
+        try{
+            
+            if(request.getSession()!=null)
+            {
+                String s=(String)request.getSession().getAttribute("redirect_url").toString();
+                return s;        
+            }
+
+        }
+        
+        catch(Exception e )
+        {
+            return request.getContextPath()+"/home.jsp";
+        }
+        return request.getContextPath()+"/home.jsp";
+        
+    }
     
     public static String getLoggedInUserName( HttpServletRequest request )
     {
@@ -273,8 +422,51 @@ public class User {
         }
        catch(Exception e)
         {
-            return "GUEST";
+            return "0";
         }
-        return "GUEST";
+        return "0";
     }
+    
+    
+     public static int getLoggedInUserRole( String email )
+     {
+            Connection con;//=DbCon.getDbConnection();
+                    String name="";
+                    int n=0;
+
+                            try{
+
+                                    con=DbCon.getDbConnection();
+
+                                    ResultSet rst=null;
+                                    Statement stmt=null;
+
+                                    stmt=con.createStatement();
+                                    rst=stmt.executeQuery("SELECT role FROM health1.user_roles where email = '"+email+"'");//'sbose78@gmail.com'");
+                                    while(rst.next()){
+                                        n= rst.getInt("role");
+                                    }
+                                    DbCon.closeConnection(con);
+                                    
+                            }
+
+
+
+                            catch(Exception e)
+                            {
+                                System.out.println(e.toString());
+                            }
+ 
+                              
+                            return n;
+    }
+    
+    
+    public static void signout(HttpServletRequest request)
+    {
+        request.getSession(true).setAttribute("email", "GUEST");
+    }
+            
+  
+            
 }

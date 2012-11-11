@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 
-<div><%@include file="../widget-code.jsp" %></div>
+<div>
 
 <html lang="en">
 <head>
-        <title> UDHC: HOW </title>
+        <title> UDHC: How we go about it</title>
+        
+   <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  
+        
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/jqwidgets/styles/jqx.base.css" type="text/css" />
+  
+    <script type="text/javascript" src="<%=request.getContextPath()%>/jqwidgets/jqxcore.js"></script>
     
+    <script type="text/javascript" src="<%=request.getContextPath()%>/jqwidgets/jqxtabs.js"></script>
+
+    
+    <script type="text/javascript">
+    $(document).ready(function () {
+        alert("correcting");
+         $('.jqxTabs').jqxTabs({ position: 'top', width: '1000px', height: '700px' , reorder: true });
+    });
+    </script>
     
 </head>
 

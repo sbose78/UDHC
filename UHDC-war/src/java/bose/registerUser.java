@@ -45,11 +45,28 @@ public class registerUser extends HttpServlet {
              * 
              */
             
+            // 0 - caregiver
+            // 1 - social worker
+            // 2 - care-seeker
+            
             int role= Integer.parseInt(request.getParameter("role"));
             String name=request.getParameter("name");
             String email=request.getSession().getAttribute("email").toString();
             User user=new User(role,email,1,name,"0");
             System.out.println(user.insertUser());
+            
+            request.getSession(true).setAttribute("name", name);
+            request.getSession(true).setAttribute("role", request.getParameter("role") );
+            
+            
+            /*
+             * Added in the prev servlet
+             * 
+                        request.getSession().setAttribute("name",authentication.getFullname());
+                        request.getSession().setAttribute("email",authentication.getEmail());
+                        request.getSession().setAttribute("gender",authentication.getGender());
+             *              * 
+             */
             
             
             
@@ -65,7 +82,7 @@ public class registerUser extends HttpServlet {
          finally {            
     
         }
-        response.sendRedirect("index.jsp");
+        response.sendRedirect(request.getContextPath()+"/INPUT/displayMyInputs.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

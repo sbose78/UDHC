@@ -1,6 +1,17 @@
 
+function show_image(link)
+{
+ //   window.openDialog(link, 'image');//, features, arg1, arg2)
+ 
+  var myWin = window.open(link,"MainWin","width=500px" + ",height=500px"+ ",screenX=500px" + ",screenY=500px" + ",left=500px" + ",top= 500px"+ ",scrollbars=yes,toolbar=0,status=1,menubar=0,resizable=0,titlebar=no");
+ 
+}
+
+
+
 window.onload=function(){
     open_();
+    
 }
 
 function close_()
@@ -52,6 +63,9 @@ var sUrl = "assets/post.php";
 var postData = "username=anonymous&userid=0";
 */
 function showIssue(topic_id, context_path){
+    
+        document.getElementById("process_dropdown").style.visibility='hidden';
+        
         topic_id=topic_id.toString();
          posts=document.getElementById("process_input");
         posts.innerHTML="<p align='center'> <img src='http://www.superpurses.com/images/loading.gif'/></p>";        

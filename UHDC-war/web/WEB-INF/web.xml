@@ -36,6 +36,18 @@
         <servlet-name>UploadToDocs</servlet-name>
         <servlet-class>bose.google.UploadToDocs</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>signout</servlet-name>
+        <servlet-class>bose.signout</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CatchReport</servlet-name>
+        <servlet-class>bose.CatchReport</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>showImageReport</servlet-name>
+        <servlet-class>bose.showImageReport</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CatchHealthIssue</servlet-name>
         <url-pattern>/CatchHealthIssue</url-pattern>
@@ -71,6 +83,18 @@
     <servlet-mapping>
         <servlet-name>UploadToDocs</servlet-name>
         <url-pattern>/UploadToDocs</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>signout</servlet-name>
+        <url-pattern>/signout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CatchReport</servlet-name>
+        <url-pattern>/CatchReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>showImageReport</servlet-name>
+        <url-pattern>/showImageReport</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

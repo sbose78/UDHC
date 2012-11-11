@@ -1,3 +1,6 @@
+
+
+
 <%-- 
     Document   : problem_list
     Created on : 28 Apr, 2012, 5:47:27 PM
@@ -10,7 +13,7 @@
 <%@ page import="bose.*" %> 
 <%@ page import="java.util.*" %> 
 
-<div><%@include file="widget-code.jsp" %></div>
+<%@include file="widget-code.jsp" %>
 
 <html>
     
@@ -33,7 +36,7 @@
         
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>LIST </title>
+        <title>All health cases </title>
         
 </head>  
     

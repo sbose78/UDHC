@@ -6,6 +6,32 @@
 
 
 
+<%
+
+    if(bose.User.getLoggedInUserEmail(request).equals("GUEST"))
+    {
+        String redirect_url=request.getContextPath()+"/network.jsp?topic_id="+request.getParameter("topic_id");
+        request.getSession(true).setAttribute("redirect_url", redirect_url);
+        response.sendRedirect(request.getContextPath()+"/account.jsp?message=YOU ARE NOT SIGNED IN");        
+    }
+
+%>
+
+
+<script>
+    
+
+    function show_image(link)
+    {
+    //   window.openDialog(link, 'image');//, features, arg1, arg2)
+
+    var myWin = window.open(link,"MainWin","width=500px" + ",height=500px"+ ",screenX=500px" + ",screenY=500px" + ",left=500px" + ",top= 500px"+ ",scrollbars=yes,toolbar=0,status=1,menubar=0,resizable=0,titlebar=no");
+
+    }
+    
+</script>
+
+
 <%@page import="bose.HealthRecord"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -256,7 +282,7 @@ window.onload=function(){
                                         <textarea id="editor" name="editor" rows="20" cols="75" >
                                         </textarea>
                                        
-                                        <input type="text" id="v" name="post_data">
+                                        <input type="hidden" id="v" name="post_data">
                                         <input type="hidden" id="topic_id" name="topic_id" value="<%=request.getParameter("topic_id")%>">
                                         <br>
                                         <input type="button" name="b" id="b" value="POST COMMENT">

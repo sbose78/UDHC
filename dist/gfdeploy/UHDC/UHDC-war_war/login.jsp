@@ -62,10 +62,11 @@
        
     <script src="http://www.google.com/jsapi?key=AIzaSyA5m1Nc8ws2BbmPRwKu5gFradvD_hgq6G0" type="text/javascript"></script>
     <script type="text/javascript">
-    /*
+        
+           /*
     *  How to load a feed via the Feeds API.
     */
-    
+    /*
     google.load("feeds", "1");
     
     // Our callback function, for when a feed is loaded.
@@ -78,15 +79,16 @@
         // Loop through the feeds, putting the titles onto the page.
         // Check out the result object for a list of properties returned in each entry.
         // http://code.google.com/apis/ajaxfeeds/documentation/reference.html#JSON
-        for (var i = 0; i < result.feed.entries.length; i++) {
+        for (var i = 0; i < result.feed.entries.length; i++) {  //
           var entry = result.feed.entries[i];
           var div = document.createElement("div");
           div.innerHTML="<a href='"+entry.link+"'>"+entry.title+"</a>";
           //div.appendChild(document.createTextNode(entry.title));
-          
-          
+              
           div.className="feed_title";
           container.appendChild(div);
+       
+          
         }
       }
     }
@@ -100,8 +102,24 @@
     }
     
     google.setOnLoadCallback(OnLoad);
+    
+    
+   */
     </script>
             <div id="content_feed">
+                
+                Are you a care-seeker? 
+                
+                <ul>
+                    <li>Sign up OR Login using your Google/Yahoo account</li>
+                    <li>Complete the short registration</li>
+                    <li>Fill your health issue details and <B>SUBMIT</b></li>
+                    <li>Add more images/scans if required</li>                    
+                                        
+                </ul>
+                
+                
+                
                 
                 
                 

@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package bose;
+import bose.models.Report;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class HealthRecord {
     String problem_details;
     String socialWorker_id;
     String problem_id;
+    int approved;
     InputStream consent_letter;
     
     public HealthRecord()
@@ -36,6 +38,16 @@ public class HealthRecord {
     
     public HealthRecord(String topic, String socialWorker_id,String problem_id, String problem_details, InputStream consent_letter)
     {
+        this.consent_letter=consent_letter;
+        this.problem_id=problem_id;
+        this.socialWorker_id=socialWorker_id;
+        this.problem_details=problem_details;
+        this.topic=topic;
+        
+    }
+      public HealthRecord(String topic, String socialWorker_id,String problem_id, String problem_details, InputStream consent_letter,int approved)
+    {
+        this.approved=approved;
         this.consent_letter=consent_letter;
         this.problem_id=problem_id;
         this.socialWorker_id=socialWorker_id;
@@ -172,6 +184,48 @@ public class HealthRecord {
         
     }
     
+    
+     public static ArrayList<Report> getImagesListAndInfo(int topic_id)
+    {
+        ArrayList<Report> list=new ArrayList<Report>();
+        Connection con;
+        
+       try{
+            
+                con=DbCon.getDbConnection();
+
+                ResultSet rst=null;
+                Statement stmt=null;
+                
+              
+
+                stmt=con.createStatement();
+                rst=stmt.executeQuery("select idhealth_files, file_name from health1.health_files where topic_id = "+topic_id);
+                while(rst.next()){
+                    Report report = new Report(rst.getInt("idhealth_files")+"",rst.getString("file_name"));
+                    list.add(report);
+                    //list.add(rst.getInt("idhealth_files"));     
+                }
+                DbCon.closeConnection(con);
+                
+                
+        }
+        
+        
+        
+        catch(Exception e)
+        {
+            System.out.println(e.toString());
+        }
+        
+        
+        return list;
+        
+        
+    }
+   
+    
+    
     public static ArrayList<HealthRecord> getSubmissionsByUserEmail(String email)
     {
        
@@ -238,6 +292,41 @@ public class HealthRecord {
         return "OK";
     }
     
+    // Called from UploadImage.java
+    public static String insertImageWithName(InputStream image,int topic_id,String file_name)
+    {
+        try{
+        
+        Connection conn= DbCon.getDbConnection();
+        
+                PreparedStatement pstatement = null;
+
+                String queryString = "INSERT INTO health_files(file,topic_id,file_name) VALUES (?,?,?)";
+                pstatement = conn.prepareStatement(queryString);
+                
+                pstatement.setBlob(1, image);       
+                pstatement.setInt(2, topic_id);  
+                pstatement.setString(3, file_name);
+                        
+                
+                int updateQuery = pstatement.executeUpdate();
+                
+                DbCon.closeConnection(conn, pstatement);
+                
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.toString());
+        }
+        
+        
+        
+        return "OK";
+    }
+    
+    
+    // called from CatchHealthIssue servlet
+    
     public String insertHealthRecord()
     {
         try            
@@ -267,11 +356,47 @@ public class HealthRecord {
         return "OK";
     }   
     
+    
+    //added consent letter
+    
     public String insertHealthRecord2()
     {
         try            
         {
                this.problem_id=User.getScientificName();
+                Connection conn= DbCon.getDbConnection();
+                PreparedStatement pstatement = null;
+
+                String queryString = "INSERT INTO forum(topic,social_worker_id,problem_details,problem_id,consent_letter,approval) VALUES (?,?, ?,?,?,?)";
+                pstatement = conn.prepareStatement(queryString);
+                
+                pstatement.setString(1, this.topic);
+                pstatement.setString(2, this.socialWorker_id);
+                
+                pstatement.setString(3, this.problem_details);
+                pstatement.setString(4, this.problem_id);
+                pstatement.setBlob(5, consent_letter); 
+                
+                pstatement.setInt(6,0);
+                
+                int updateQuery = pstatement.executeUpdate();
+                
+                DbCon.closeConnection(conn, pstatement);
+            
+        }
+        catch(Exception e)
+        {
+            return e.toString();
+        }
+        return "OK";
+    }   
+    
+    //getting scientific name externally
+    public String insertHealthRecord3(String sc_name)
+    {
+        try            
+        {
+               this.problem_id=sc_name;
                 Connection conn= DbCon.getDbConnection();
                 PreparedStatement pstatement = null;
 

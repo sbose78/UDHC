@@ -7,7 +7,25 @@
 <%@page import="bose.HealthRecord"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <%= bose.HealthRecord.showSolution(Integer.parseInt( request.getParameter("topic_id"))) %>    
 
-</html>
+
+<%
+    int topic_id= Integer.parseInt( request.getParameter("topic_id"));
+    
+%>
+
+<h3 align="center">
+    
+    Remedy :
+    
+</h3>
+
+<div >
+    
+    <%= bose.HealthRecord.showSolution(Integer.parseInt( request.getParameter("topic_id"))) %>    
+    
+</div>
+
+    
+
+

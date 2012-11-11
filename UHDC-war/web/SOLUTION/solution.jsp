@@ -6,9 +6,15 @@
 
 
 
+          <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  
   
        <script src="http://yui.yahooapis.com/3.5.0/build/yui/yui-min.js"></script>
   
+    
+    
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/menu/assets/skins/sam/menu.css" />
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/button/assets/skins/sam/button.css" />
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/fonts/fonts-min.css" />
@@ -28,12 +34,11 @@
 <script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/event/event-min.js"></script>
 <script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/connection/connection-min.js"></script>
 
-    <script src="http://yui.yahooapis.com/3.5.0/build/yui/yui-min.js"></script>
+    <script src="http://yui.yahooapis.com/3.5.0/build/yui/yui-min.js"></script>        
 
 
 
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/fonts/fonts-min.css" />
-<script type="text/javascript" src="http://yui.yahooapis.com/2.9.0/build/yahoo/yahoo-min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/SOLUTION/scripts.js"></script>
 
 
@@ -48,7 +53,6 @@
 <!DOCTYPE html>
 <html>
 
-    <script src="http://yui.yahooapis.com/3.5.0/build/yui/yui-min.js"></script>
     
     <head>
         
@@ -58,12 +62,23 @@
     </head>
     
     <%
-            String topic_id=request.getParameter("topic_id");
+            int topic_id=Integer.parseInt(request.getParameter("topic_id"));
     %>
     <input type="hidden" value="<%=topic_id%>" id="topic_id">
     <input type="hidden" value="<%= request.getContextPath() %>" id="context_path">
     
       <div><%@include file="../hpanel.jsp" %></div>
+      
+      <h3 align="center">
+          
+          <%
+            bose.HealthRecord hr=bose.HealthRecord.getHealthRecordByID(topic_id);
+            String topic=hr.getTopic();
+          %>
+          
+          Solution for health case : <%= topic  %>
+          
+      </h3>
     
    <body>  <br><br>
        <div align='center'>
@@ -79,11 +94,24 @@
                     
                     
        <div id="solution_box" align="center">  
+           
+         
+           
        </div>
                     
                                          <div id="posts" onload="showPosts(<%= topic_id %>)"></div>
 
-        
+      <script>
+       
+       window.onload=function(){
+           
+           show_solution_list('<%=request.getContextPath()%>/SOLUTION/viewSolution.jsp?topic_id=<%=topic_id%>');
+           
+       }
+          
+       </script>
+                                             
+                                             
                     
                     
                         

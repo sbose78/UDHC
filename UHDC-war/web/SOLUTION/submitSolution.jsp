@@ -1,23 +1,7 @@
-<%-- 
-    Document   : index
-    Created on : 28 Apr, 2012, 2:55:33 PM
-    Author     : root - shoubhik bose
---%>
 
-
-<%@ page import="bose.*" %> 
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-
-    
-    <head>
+    <div   class="yui-skin-sam" >
         
-    </h4>
-    <body   class="yui-skin-sam" >
-        
-            <h2 align="center"> SOLUTION for Care-seeker health issue ? </h2>
+            <h3 align="center"> SOLUTION for Care-seeker health issue ? </h3>
 
 
   <form method="post" action="<%=request.getContextPath() %>/CatchHealthIssue" name="form1" id="form1">
@@ -42,11 +26,4 @@
                 </script>
 
 
-        
-        
-        
-        
-        
-        
-    </body>
-</html>
+    </div>

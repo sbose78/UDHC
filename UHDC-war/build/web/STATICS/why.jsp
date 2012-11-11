@@ -25,7 +25,7 @@
                     <h4 align="center"> Frequently asked questions </h4>
                     <br><br>
 
-        <iframe width="900px" height="900px"src="https://docs.google.com/document/pub?id=1TKp1K5Stk9aqaKcQx31UKLrJQ9pccuoaKq8n-8Q8jgI&amp;embedded=true"></iframe>
+        <iframe width="900px" height="1200px"src="https://docs.google.com/document/pub?id=1TKp1K5Stk9aqaKcQx31UKLrJQ9pccuoaKq8n-8Q8jgI&amp;embedded=true"></iframe>
     </div>
 
         <div align='center'>

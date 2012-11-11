@@ -44,6 +44,8 @@ public class CatchHealthIssue2 extends HttpServlet {
         String topic = "";//request.getParameter("topic");
         String problem_details = "";//request.getParameter("problem_details");
         String swid= User.getLoggedInUserEmail(request);
+        String patient_name="";
+        String isNew="";
         
     try {
         List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
@@ -57,6 +59,11 @@ public class CatchHealthIssue2 extends HttpServlet {
                 fieldname = item.getFieldName();
                 fieldvalue = item.getString();
                 
+                if( fieldname.equals("isNew"))
+                {
+                    isNew=fieldvalue;
+                }
+                
                 if(fieldname.equals("topic"))
                 {
                     topic=fieldvalue;
@@ -66,6 +73,10 @@ public class CatchHealthIssue2 extends HttpServlet {
                     problem_details=fieldvalue;
                 }
                 
+                else if(fieldname.equals("patient_name"))
+                {
+                    patient_name=fieldvalue;                    
+                }
                 
                 System.out.println(fieldname+"....formfield...."+fieldvalue);
                 // ... (do your job here)
@@ -80,14 +91,53 @@ public class CatchHealthIssue2 extends HttpServlet {
                 // ... (do your job here)
             }
         }
-        
+       // String sc_name=bose.User.getScientificName();
           HealthRecord hr=new HealthRecord(topic,swid,"0",problem_details,filecontent);
-          hr.insertHealthRecord2();
+          
+          String name=bose.User.getLoggedInUserName(request);
+          
+          // This is an object created to help invoke functions
+          
+          User u=new User(patient_name,swid);
+         
+          /*
+           The first condition checks whether its a new patient 
+          the second condtion checks whether the logged in user is *not* a care-seeker because the rest can add new 
+          patients to the database
+          * 
+          * 
+          */
+          
+          if(isNew.equals("1") && !User.getLoggedInUserRole(request).equals("0"))
+             
+          {
+            u.insertSocialWorkerPatient();
+          }
+          
+          hr.insertHealthRecord3(patient_name);
           //HealthRecord.insertImage(filecontent,Integer.parseInt(fieldvalue));          
           
-          response.sendRedirect(request.getContextPath()+"/mySocialUploads.jsp");
+          
+           String to[]={"sbose78@gmail.com"};//,"shivika.ch@gmail.com ","rakesh7biswas@gmail.com"};
+            String subject="[UDHC] Patient name : "+ patient_name + "uploaded by " + bose.User.getLoggedInUserName(request);
+            String content=" Hi, <br>A new health issue has been posted on UDHC<br>: "+topic;
+            content+="<br> ***This is an automated email sent from the UDHC website. Visit <a href='http://care.udhc.co.in/INPUT/displayInputs.jsp'>LIST OF RECORDS</a> for attached images  ***<br><br>";
+            content+=problem_details;
+            content+="<br><br>Warm regards, <br> The UDHC Team";
+            
+            topic="[ UDHC ] - "+ patient_name + "uploaded by " + bose.User.getLoggedInUserName(request);
+           // problem_details="A new issue has been uploaded at <a href='http://care.udhc.co.in/INPUT/displayInputs.jsp'>UDHC NETWORK</a><br><br>"
+           //         +problem_details;
+            bose.EmailUtil.sendMail("sbose78", to, subject, content);
+            
+             response.sendRedirect(request.getContextPath()+"/INPUT/displayMyInputs.jsp");
+           
+    }
+         
+          
+         
         
-    } catch (Exception e) {
+     catch (Exception e) {
         throw new ServletException("Cannot parse multipart request.", e);
     }
 

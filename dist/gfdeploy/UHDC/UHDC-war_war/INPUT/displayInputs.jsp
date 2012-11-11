@@ -1,7 +1,7 @@
-<%-- 
-    Document   : displayInputs
+<%--
+    Document : displayInputs
     Created on : 9 Jun, 2012, 1:43:39 PM
-    Author     : root
+    Author : root
 --%>
 
 <!DOCTYPE html>
@@ -31,8 +31,8 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/mystyle.css" type="text/css" />
 <script type="text/javascript" src="<%=request.getContextPath()%>/INPUT/script.js"></script>
 
-<%@ page import="bose.*" %> 
-<%@ page import="java.util.*" %> 
+<%@ page import="bose.*" %>
+<%@ page import="java.util.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
     <head>
@@ -44,12 +44,20 @@
     
     <body>
         
+        
+
+
+        
                 <div><%@include file="../hpanel.jsp" %></div>
 
         
         <div id="displayInputs_narrative_list">
             
-            <div id="displayInputs_add_new" align="center"> <a href="../index.jsp">ADD A NEW HEALTH RECORD</a><br>
+            <div id="displayInputs_add_new" align="center"> <a href="<%=request.getContextPath()%>/INPUT/care-seeker-input.jsp">ADD  A NEW HEALTH RECORD</a> &nbsp;&nbsp; &nbsp;
+                <a href="displayMyInputs.jsp"> MY RECORDS </a>
+                
+                
+                <br>
                 <br></div>
                 
                 <div align="center" id="displayInputs_heading"> <b>PREVIOUSLY ADDED RECORDS </b> </div>
@@ -74,7 +82,7 @@
             
             <div class="displayInputs_problems" onclick="showIssue(<%=problem_topic_id%>)"> <%= problem_title%> </div>
         
-            <% }  %>
+            <% } %>
             
         </div>
         
@@ -89,4 +97,3 @@
              
     </body>
 </html>
-            

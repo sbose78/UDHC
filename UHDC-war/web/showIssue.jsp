@@ -23,9 +23,15 @@
                                     int i = 0;
                                     for(Integer image : images )
                                     {        i++;
-                                            out.println("<li><a href='"+request.getContextPath()+"/ViewImage?file_id="+image+"'>View image "+i+"</a>");
+                                            //out.println("<li><a href='"+request.getContextPath()+"/ViewImage?file_id="+image+"'>View image "+i+"</a>");
+%>
+
+<a href="#" onclick="show_image('<%=request.getContextPath()%>/ViewImage?file_id=<%=image%>')"><img src="<%=request.getContextPath()%>/ViewImage?file_id=<%=image%>" height='50px' width='50px'><%=i%></a>
+
+
+  <%
                                     }
-                                    %>
+  %>
 
                     </ul>
     </div>

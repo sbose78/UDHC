@@ -43,18 +43,36 @@ public class UploadImage extends HttpServlet {
         
         System.out.println("--------------IN SERVLET-----");
         
+         PrintWriter out = response.getWriter();
+
+        
     try {
         List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
         
+        String file_name="";
+        String topic_id="";
+        
         String fieldname;
         String fieldvalue=""; ;
-        InputStream filecontent=null ;
+        InputStream filecontent=null ;  
+        
+        // assumption was that there were just 2 fields.
+        // now there are 3. Added the file_description too in the form of file_name
+        
         for (FileItem item : items) {
             if (item.isFormField()) {
                 // Process regular form field (input type="text|radio|checkbox|etc", select, etc).
                 fieldname = item.getFieldName();
                 fieldvalue = item.getString();
                 
+                if( fieldname.equals("topic_id") )
+                {
+                    topic_id=fieldvalue;
+                }
+                else if( fieldname.equals("file_name"))
+                {
+                    file_name=fieldvalue;
+                }
                 
                 
                 System.out.println(fieldname+"....formfield...."+fieldvalue);
@@ -72,9 +90,11 @@ public class UploadImage extends HttpServlet {
         }
         
          
-          HealthRecord.insertImage(filecontent,Integer.parseInt(fieldvalue));          
+          HealthRecord.insertImageWithName(filecontent,Integer.parseInt(topic_id),file_name);      
+          out.println("<br>Successfully uploaded<br>");
+          out.close();
           
-          response.sendRedirect(request.getContextPath()+"/mySocialUploads.jsp");
+        //  response.sendRedirect(request.getContextPath()+"/mySocialUploads.jsp");
         
     } catch (Exception e) {
         throw new ServletException("Cannot parse multipart request.", e);

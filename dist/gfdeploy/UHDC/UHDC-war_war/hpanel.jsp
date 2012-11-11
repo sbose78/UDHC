@@ -1,108 +1,31 @@
 
+<script>
+    
+    function open_login(provider)
+    {
+        var link="<%=request.getContextPath() %>/openid?op="+provider;
+        var myWin = window.load(link);//,"MainWin","width=500px" + ",height=500px"+ ",screenX=500px" + ",screenY=500px" + ",left=500px" + ",top= 500px"+ ",scrollbars=yes,toolbar=0,status=1,menubar=0,resizable=0,titlebar=no");
+        return false;
+    }
+    
+</script>
+
+        <div id="login_buttons">
+            
+            <input type='image' onclick="open_login('Yahoo')" src='http://l.yimg.com/a/i/reg/openid/buttons/7.png'>
+            <input type='image' onclick="open_login('Google')" src='http://fests.eu/images/openid/login/google.png'>          
+            
+        </div>
+        
 
         
   
         
-        
-         <link rel="stylesheet" href="<%=request.getContextPath()%>/jqwidgets/styles/jqx.base.css" type="text/css" />
-         <link rel="stylesheet" href="<%=request.getContextPath()%>/jqwidgets/styles/jqx.energyblue.css" type="text/css" />
-         <link rel="stylesheet" href="<%=request.getContextPath()%>/jqwidgets/styles/jqx.summer.css" type="text/css" />
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/jqwidgets/styles/jqx.shinyblack.css" type="text/css" />
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/jqwidgets/styles/jqx.darkblue.css" type="text/css" />
-
          
-                  <link rel="stylesheet" href="<%=request.getContextPath()%>/jqwidgets/styles/jqx.darkblue.css" type="text/css" />
+              
                   
                   <link rel="stylesheet" href="<%=request.getContextPath()%>/mystyle.css" type="text/css" />
 
-
-    <script type="text/javascript" src="<%=request.getContextPath()%>/jqwidgets/jqxcore.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/jqwidgets/jqxmenu.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/jqwidgets/jqxcheckbox.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/jqwidgets/jqxtabs.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/jqwidgets/jqxexpander.js"></script>
-        <script type="text/javascript" src="<%=request.getContextPath()%>/jqwidgets/jqxbuttons.js"></script>
-    
-        <script type="text/javascript">
-            $(document).ready(function () {
-                var theme = 'energyblue';//getTheme();
-                // Create a jqxMenu
-                
-                $("#input_tabs").jqxTabs({ position: 'top', width: '1100px', height: '1000px' , theme: theme, reorder: true });
-                $(".accordion").accordion({ autoHeight: true , clearStyle: true });
-                $("#b").jqxButton({ width: '500px', height: '30px', theme: theme });
-                $(".name_button").jqxButton({ width: '450', height: '40', theme: 'darkblue' });
-                $('.jqxTabs').jqxTabs({ position: 'top', width: '1000px', height: '700px' , theme: theme, reorder: true });
-//                $("#jqxMenu").jqxMenu({ width: '540px', height: '30px', theme: theme });
- //               $("#jqxMenu").css('visibility', 'visible');
-                //$("#jqxMenu").css('margin-left', '40px');
-
-                $("#disabled").jqxCheckBox({ theme: theme, width: '150px', height: '20px' });
-                
-                $("#open").jqxCheckBox({ theme: theme, width: '150px', height: '20px' });
-                $("#hover").jqxCheckBox({ theme: theme, width: '150px', height: '20px' });
-                $("#topLevelArrows").jqxCheckBox({ theme: theme, width: '200px', height: '20px' });
-                $("#animation").jqxCheckBox({ theme: theme, width: '150px', height: '20px' });
-                $("#jqxLoginInfo").jqxExpander({ width: '200px', theme: 'darkblue' });
-               
-
-                $("#animation").bind('change', function (event) {
-                    var value = event.args.checked;
-                    // enable or disable the menu's animation.
-                    if (!value) {
-                        $("#jqxMenu").jqxMenu({ animationShowDuration: 0, animationHideDuration: 0, animationShowDelay: 0 });
-                    }
-                    else {
-                        $("#jqxMenu").jqxMenu({ animationShowDuration: 500, animationHideDuration: 300, animationShowDelay: 200 });
-                    }
-                });
-
-                $("#disabled").bind('change', function (event) {
-                    var value = event.args.checked;
-                    // enable or disable the menu
-                    if (!value) {
-                        $("#jqxMenu").jqxMenu({ disabled: false });
-                    }
-                    else {
-                        $("#jqxMenu").jqxMenu({ disabled: true });
-                    }
-                });
-
-                $("#hover").bind('change', function (event) {
-                    var value = event.args.checked;
-                    // enable or disable the menu's hover effect.
-                    if (!value) {
-                        $("#jqxMenu").jqxMenu({ enableHover: false });
-                    }
-                    else {
-                        $("#jqxMenu").jqxMenu({ enableHover: true });
-                    }
-                });
-
-                $("#open").bind('change', function (event) {
-                    var value = event.args.checked;
-                    // enable or disable the opening of the top level menu items when the user hovers them.
-                    if (!value) {
-                        $("#jqxMenu").jqxMenu({ autoOpen: false });
-                    }
-                    else {
-                        $("#jqxMenu").jqxMenu({ autoOpen: true });
-                    }
-                });
-                $("#topLevelArrows").bind('change', function (event) {
-                    var value = event.args.checked;
-                    // enable or disable the opening of the top level menu items when the user hovers them.
-                    if (!value) {
-                        $("#jqxMenu").jqxMenu({ showTopLevelArrows: false });
-                    }
-                    else {
-                        $("#jqxMenu").jqxMenu({ showTopLevelArrows: true });
-                    }
-                });
-            });
-        </script>
-        
-        
         
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -124,17 +47,42 @@
 </script>
 
 
-                   <link rel="stylesheet" href="<%=request.getContextPath()%>/mystyle.css" type="text/css" />
 
 
-                   <h2><a href="<%=request.getContextPath()%>/login.jsp">User-driven healthcare</a></h2>
+                 <h2>
+                     
+                     <table>
+                         
+                         <tr>
+                             
+                             <td>
+                                                      <a href="<%=request.getContextPath()%>/login.jsp">User-driven healthcare</a>
+
+                             </td>
+                             
+                             <td>
+                                 
+                                 
+                                 
+                             </td>
+                             
+                         </tr>
+                         
+                     </table>
+                       
+                      
+                 </h2>
+                   
+                   <br>
      
      
      <div id="horizontal_nav_bar">
          
          <ul>
              
-             
+             <li><a href="<%=request.getContextPath()%>/account.jsp">                   
+                     <%= bose.User.getLoggedInUserEmail(request)%>
+                      - MY ACCOUNT</a></li>
               <li><a href="<%=request.getContextPath()%>/home.jsp">HOME</a></li>
                     <li><a href="<%=request.getContextPath()%>/HOW/how.jsp">HOW</a></li>                    
                     <li><a href='<%=request.getContextPath()%>/STATICS/what.jsp'> WHAT</a></li>             
